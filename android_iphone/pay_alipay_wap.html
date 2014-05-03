@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+   		<link rel="stylesheet" href="css/ui-res.css">
+		<link rel="stylesheet" href="css/android.css">
+  		<link rel="stylesheet" href="css/ui-btn.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+		<link rel="stylesheet" href="css/ui-btz.css">
+	<script src="js/config.js"></script>
+        <script src="js/jquery-1.6.4.min.js"></script>
+        <script src="js/zy_control.js"></script>
+        <script src="js/zy_click.js"></script>
+        <script src="js/zy_json.js"></script>
+    </head>
+    <body class="um-vp ub ub-ver">
+    </body>
+    <script>
+        zy_init();
+        window.uexOnload = function(type){
+			var params = zy_parse();
+			var oid=params.oid;
+			var fee=params.fee;
+			url= url_ +"mobile/alipay/pay_alipay_wap.php?oid="+oid + "&fee=" + fee;
+			window.location.href=url;
+        }
+    </script>
+</html>

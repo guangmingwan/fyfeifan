@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+   
+<link rel="stylesheet" href="css/ui-media.css"> 
+
+
+    <link rel="stylesheet" href="css/ui-base.css">
+
+<link rel="stylesheet" href="css/ui-box.css">
+    <link rel="stylesheet" href="css/ui-apple.css">
+
+
+    <link rel="stylesheet" href="css/h_style.css">
+
+
+    <link rel="stylesheet" href="css/style.css">
+        <script src="js/zy_control.js"></script>
+        <script src="js/zy_click.js"></script>
+    </head>
+    <body class="um-vp c-wh" ontouchstart>
+        <div id="header" data-role="header" class="ui-header ui-bar-a ui-header-fixed ui-bar-glass h_t_color" >
+        	<div onClick="uexWindow.close(-1);" id="fh" ontouchstart="t_m_start(this.id)" ontouchmove="t_m_move(this.id)" ontouchend="t_m_end(this.id)" data-role="button" class="ui-btn-left ui-btn-corner-all ui-btn ui-btn-limit ui-bar-a   ui-shadow w_head_btn"> <span class="ui-btn-inner ui-btn-corner-all www_padding"> <span class="ui-btn-text">返回</span> </span></div> 
+ 
+		<h1 class="ui-title" tabindex="0" role="heading" aria-level="1">
+		
+		
+		订单支付
+		
+		
+		</h1> 
+		
+		
+		</div>
+            <div id="content" class="ui-box-content ub-f1 tx-l t-bla"> 
+			afasfd           
+            </div>
+         
+    </body>
+    <script>
+    	zy_init();
+        window.uexOnload = function(type){
+			var params = zy_parse();
+			var oid=params.oid;
+			var fee=params.fee;
+			//alert(oid);
+            if (!type) {
+                zy_con("content", "pay_alipay_wap.html?oid="+oid+"&fee="+fee,0,$$("header").offsetHeight);
+            }
+			window.onorientationchange=window.onresize=function()
+			{
+				zy_resize("content",0,$$("header").offsetHeight);				
+			}
+        }
+    </script>
+</html>

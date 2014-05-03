@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+
+<html class="ui-mobile landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+
+  <head>
+
+
+    <title>
+
+
+    </title>
+
+
+    <meta charset="utf-8">
+
+
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+
+    <link rel="stylesheet" href="css/ui-media.css"> 
+
+
+    <link rel="stylesheet" href="css/ui-base.css">
+
+
+    <link rel="stylesheet" href="css/ui-apple.css">
+
+
+    <link rel="stylesheet" href="css/h_style.css">
+
+
+    <link rel="stylesheet" href="css/style.css"> <script src="js/zy_anim.js">
+
+
+    </script>
+<script src="js/config.js"></script>
+<script src="js/jquery-1.6.4.min.js"></script>
+
+    <script src="js/zy_control.js">
+<script src="js/zy_json.js"></script>
+
+    </script>
+
+
+ 	<script src="js/zy_tmpl.js">
+
+
+    </script>
+
+
+     <script type="text/javascript" src="js/config.js"></script>
+<script type="text/javascript" src="js/h_main.js"></script>
+
+  </head>
+
+
+  <body class="ui-mobile-viewport" >
+<script type="text/javascript">
+	zy_init();
+	var url=httpUrl +'user.php?jsoncallback=?&act=pay_order';
+	var oid,userrmb,all_money,haixurmb,subject;
+	var quanmoneyarray=new Array();
+	var useyuepay = "";
+	var payment= "";
+	window.uexOnload = function(type){
+//		uexPay.onStatus = paySuccess;
+//        uexWidgetOne.cbError = payFailed;
+		//uexWindow.toast(1,5,"加载中",0);
+		selectSend(2);
+		var para=zy_parse();
+		oid=para.oid;
+		all_money=para.all_money;
+		$("#all_money").html(	para.all_money	);
+		$("#gdesc").html(	para.gdesc	);
+        	if (!type) {
+            		uexWindow.setBounce("0");
+			 		$("#gotopay").click(function () {
+						pay();
+					});
+ 	       }
+		   
+		uexXmlHttpMgr.onData = httpSuccess;
+		uexWidgetOne.cbError = function(opCode, errorCode, errorInfo){
+		
+		
+			uexWindow.alert("提示", "errorCode:" + errorCode + "\nerrorInfo:" + errorInfo, "确定");
+			
+			
+		}   
+    }
+	  
+	function selectSend(ptype)
+	{
+		switch(ptype) {
+			case 0:
+			payment_name = "yue";
+			useyuepay = "yes";
+			payment="";
+			break;
+			case 1:
+			payment_name = "alipay";
+			payment="online";
+			break;
+			case 2:
+			payment_name = "alipay_wap";
+			payment="online";
+			break;
+		}
+	}
+	function pay(){
+		uexWindow.toast(1, 5, "正在支付", 0);
+		
+		if (payment_name == 'alipay_wap') {
+			uexWindow.closeToast();
+			payurl = "pay_alipay_wap_shell.html?oid=" + oid + "&fee=" + all_money;
+			uexWindow.open('pay_alipay_wap', '0', payurl, '2', '', '', '0');
+			
+		}
+		else {
+		
+			
+			
+			
+			var indent_detail_url = httpUrl + "user.php?jsoncallback=?&act=pay_order&order_id=" + oid;
+			
+			
+			//alert(indent_detail_url)
+			
+			
+			xmlHttp(1, indent_detail_url);
+			
+			
+			//uexPay.onStatus = paySuccess;
+			
+			
+		}
+	}
+ 
+ 
+	/*取回数据并进行处理*/
+
+
+	function httpSuccess(opid, status, result){//status 状态 0 接收，1完成
+		if (status == 1) {
+			uexWindow.closeToast();
+			
+			
+			if (opid == 1) {
+				result = result.replace(/\n/g,'<br>');
+
+
+				var res = (result.substr(result.indexOf("?(")+2,result.length)).substr(0,result.length-3); 
+
+
+				var data = JSON.parse(res);
+				if(data.error == 0 ) {
+					payok();
+				}
+				else  {
+					alert(data.error);
+					uexWindow.close('-1');
+				} 
+				if(data.status ) {
+					alert(data.status);
+					uexWindow.close('-1');
+				}
+			}
+		}
+		uexXmlHttpMgr.close(opid);
+	}
+	function paySuccess(status,des){
+		uexWindow.closeToast();
+		alert(status+'-'+des+' -success');
+		if(status==0){
+			payok();
+		}else if(status==1){
+			//uexWindow.toast(1,5,"正在支付",2000);
+		}else if(status==2){
+			///if(des=="支付插件不完整"){
+				//if(window.confirm("您还没有安装支付宝插件,单击确定开始安装")){
+					//path="res://alipay.apk";
+					//uexWidget.installApp(path);
+				//}
+			//}
+		}else{
+			alert(des);
+			uexWindow.close('-1');
+		}		
+	}
+	
+	function payFailed(opCode, errorCode, des){
+		uexWindow.closeToast();
+		alert(opCode+'opCode'+errorCode+'-'+des+'-success');
+	}
+	
+	function payok(){
+		uexWindow.open('pay_ok','0','pay_ok.html?orderId='+oid,'2','','','0',0);
+		uexWindow.evaluateScript("nouse_shell",0,"uexWindow.close('')");
+		uexWindow.evaluateScript("ord_shell",0,"uexWindow.close('')");
+		uexWindow.evaluateScript("notpay_shell",0,"uexWindow.close('')");
+		uexWindow.evaluateScript("mymall_indent",0,"uexWindow.close('')");
+		uexWindow.evaluateScript("mymall_indent_details",0,"uexWindow.close('')");
+		uexWindow.close('');
+	}
+</script>
+
+   
+
+
+
+
+
+<div data-role="header" class="ui-header ui-bar-a ui-header-fixed ui-bar-glass h_t_color" >
+
+
+<!-- <div class="ui-btn  ui-btn-left  ui-btn-corner-all ui-shadow  ui-btn-c" onClick="uexWindow.close(-1);">  <span class="ui-btn-inner ui-btn-corner-all"> <span class="ui-btn-text">返回</span>  </span> <button class="ui-btn-hidden"></button> </div> -->
+
+
+<div onClick="uexWindow.close(-1);" id="fh" ontouchstart="t_m_start(this.id)" ontouchmove="t_m_move(this.id)" ontouchend="t_m_end(this.id)" data-role="button" class="ui-btn-left ui-btn-corner-all ui-btn ui-btn-limit ui-bar-a   ui-shadow w_head_btn"> <span class="ui-btn-inner ui-btn-corner-all www_padding"> <span class="ui-btn-text">返回</span> </span></div> 
+
+
+
+
+
+<h1 class="ui-title" tabindex="0" role="heading" aria-level="1">
+
+
+订单支付
+
+
+</h1> 
+
+
+</div>
+
+
+
+
+
+<div id="page_0" class="ui-page ui-body-a ui-page-active" tabindex="0">
+
+
+<div class="ui-content ui-body-a ui-fixed-top ui-fixed-bottom h_cn_color">
+
+
+	
+
+
+<ul data-role="listview" class="ui-listview ui-listview-inset ui-corner-none  ui-shadow "> 
+
+
+<li class=" ui-body-d  ui-li-static  ui-li h-lb-c ui-li-hs h-field-contain"> 请选择支付方式    </li> 
+<div id="pay1" style="display:block;" class="ui-radio ui-radio-hyc">
+<input type="radio" name="zffs" class="ui-hide"  id="radio-0-1" value="">
+<label onclick="zy_for(event);selectSend(0)" class="ui-btn ui-btn-icon-right ui-corner-top ui-btn-d ui-btn-d-hyc">
+	<label class="ui-icon ui-icon-radio ui-icon-shadow ui-icon-hyc"></label><span class="ui-btn-inner ui-btn-inner-hyc"> 
+	 <span class="ui-btn-text" id="zffs1"> 余额支付 </span></span></label></div>
+	 <!--
+<div id="pay2" style="display:block;" class="ui-radio ui-radio-hyc">
+<input type="radio" name="zffs" class="ui-hide" checked="checked" id="radio-0-1" value="">
+<label onclick="zy_for(event);selectSend(1)" class="ui-btn ui-btn-icon-right ui-corner-top ui-btn-d ui-btn-d-hyc">
+	<label class="ui-icon ui-icon-radio ui-icon-shadow ui-icon-hyc"></label>
+	<span class="ui-btn-inner ui-btn-inner-hyc">  
+	<span class="ui-btn-text" id="zffs2"> 支付宝客户端支付
+	 </span>
+	</span> 
+	</label>
+</div>
+ -->
+
+<div id="pay3" style="display:block;" class="ui-radio ui-radio-hyc">
+<input type="radio" name="zffs" class="ui-hide" checked="checked" id="radio-0-1" value="">
+<label onclick="zy_for(event);selectSend(2)" class="ui-btn ui-btn-icon-right ui-corner-top ui-btn-d ui-btn-d-hyc">
+	<label class="ui-icon ui-icon-radio ui-icon-shadow ui-icon-hyc"></label><span class="ui-btn-inner ui-btn-inner-hyc">  
+	<span class="ui-btn-text" id="zffs2"> 支付宝网页支付 </span></span></label></div>
+ 
+
+
+</ul>
+
+
+
+
+
+<ul data-role="listview" class="ui-listview ui-listview-inset ui-corner-none  ui-shadow"> 
+
+
+<li class=" ui-body-d       ui-li-static  ui-li">
+
+
+  <div style="width:100%;" class="ui-li-hs">商品详情：<span id = "gdesc">...</span><br/><br/>
+
+ 
+
+
+  </div>
+
+
+</li> 
+
+
+</ul>
+
+
+
+
+
+
+
+
+<ul data-role="listview" class="ui-listview ui-listview-inset ui-corner-none  ui-shadow"> 
+
+
+<li class=" ui-body-d       ui-li-static  ui-li ui-li-hs">
+
+
+  
+
+
+  应付总价：￥<span id="all_money">0.0</span>元 
+ 
+
+
+</ul>
+
+
+
+
+
+<div id="gotopay" data-role="button" class=" ui-btn-corner-all ui-btn  ui-btn-e   ui-shadow h-btn-pay"> <span class="ui-btn-inner ui-btn-corner-all" style="color:#fff;"> <span class="ui-btn-text">立即支付</span> </span></div> 
+
+
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+
+
+</html>
+
