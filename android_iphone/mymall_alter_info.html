@@ -50,7 +50,7 @@
 								   <span class="ui-icon ui-icon-arrow-d ui-icon-shadow"></span>
 								</div>
 							</span>
-							<select name="select-choice-0" selectedIndex="0" id="select-choice-1" onchange="zy_slectmenu(this.id);getCitys(10,1,this.value);">
+							<select name="select-choice-0" selectedIndex="1" id="select-choice-1" onchange="zy_slectmenu(this.id);getCitys(10,1,this.value);">
 								<option id="conSel_1" value="-1">请选择</option>
 								<option id="con_1" value="1">中国</option>
 							</select>
@@ -105,31 +105,31 @@
 					<label for="text-0" class="ui-input-text ui_input_text" >收货人姓名:</label>
 					<input placeholder="" name="text-0" id="textName"  type="text" value="" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-btn-d ui_input_text_left" />
 				</div>
-			</li>
-			<li class=" ui-body-b ui-li-static ui-li ui_body_b_dwx ui_li_dwx_bj ui_li_ddwx">
+			</li><input placeholder="" name="text-0" id="textEmail"  type="hidden" value="webmaster@feifan998.com" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-btn-d ui_input_text_left" />
+			<!--			<li class=" ui-body-b ui-li-static ui-li ui_body_b_dwx ui_li_dwx_bj ui_li_ddwx">
 				<div class="ui-has-label">
 					<label for="text-0" class="ui-input-text ui_input_text" >电子邮件:</label>
 					<input placeholder="" name="text-0" id="textEmail"  type="text" value="" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-btn-d ui_input_text_left" />
 				</div>
-			</li> 
+			</li> -->
 			<li class=" ui-body-b ui-li-static ui-li ui_body_b_dwx ui_li_dwx_bj ui_li_ddwx">
 				<div class="ui-has-label">
 					<label for="text-0" class="ui-input-text ui_input_text" >详细地址:</label>
 					<input placeholder="" name="text-0" id="textAddress"  type="text" value="" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-btn-d ui_input_text_left" />
 				</div>
-			</li> 
-			<li class=" ui-body-b ui-li-static ui-li ui_body_b_dwx ui_li_dwx_bj ui_li_ddwx">
+			</li> <input placeholder="" name="text-0" id="textZip"  type="hidden" value="100000" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-btn-d ui_input_text_left" />
+			<!--			<li class=" ui-body-b ui-li-static ui-li ui_body_b_dwx ui_li_dwx_bj ui_li_ddwx">
 				<div class="ui-has-label">
 					<label for="text-0" class="ui-input-text ui_input_text" >邮编:</label>
 					<input placeholder="" name="text-0" id="textZip"  type="text" value="" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-btn-d ui_input_text_left" />
 				</div>
-			</li> 
-			<li class=" ui-body-b ui-li-static ui-li ui_body_b_dwx ui_li_dwx_bj ui_li_ddwx">
+			</li> 			--><input placeholder="" name="text-0" id="textTell"  type="hidden" value="88888888" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-btn-d ui_input_text_left" />
+			<!--				<li class=" ui-body-b ui-li-static ui-li ui_body_b_dwx ui_li_dwx_bj ui_li_ddwx">
 				<div class="ui-has-label">
 					<label for="text-0" class="ui-input-text ui_input_text" >电话:</label>
 					<input placeholder="" name="text-0" id="textTell"  type="text" value="" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-btn-d ui_input_text_left" />
 				</div>
-			</li> 
+			</li> 		-->
 			<li class=" ui-body-b ui-li-static ui-li ui_body_b_dwx ui_li_dwx_bj ui_li_ddwx">
 				<div class="ui-has-label">
 					<label for="text-0" class="ui-input-text ui_input_text" >手机:</label>
@@ -265,7 +265,7 @@ function modityAddress(){
 	xmlHttp(1,addAddressUrl);
 }
 
-function httpSuccess(opid,status,result){//status 状态 0 接收，1完成
+function httpSuccess(opid,status,result){//status 状态 0 接收，1完成	var r_id = -1;
 	if(status == 1){uexWindow.closeToast();
 		if(opid == 1){
 			var res = (result.substr(result.indexOf("?(")+2,result.length)).substr(0,result.length-3);
@@ -281,32 +281,32 @@ function httpSuccess(opid,status,result){//status 状态 0 接收，1完成
 			var res = (result.substr(result.indexOf("?(")+2,result.length)).substr(0,result.length-3);
 			var pro_arr = JSON.parse(res);
 			uexXmlHttpMgr.close(opid);
-			var pro_str = '<option value="-1">请选择</option>';
+			var pro_str = '<option value="-1">请选择</option>';			
 			for(var i = 0; i < pro_arr.length; i++){
-				var pro_obj = pro_arr[i];
-				pro_str += '<option value="'+pro_obj.region_id+'">'+pro_obj.region_name+'</option>';
+				var pro_obj = pro_arr[i];				if(pro_obj.region_name == "浙江") {					r_id = pro_obj.region_id;					pro_str += '<option value="'+pro_obj.region_id+'" selected = "selected">'+pro_obj.region_name+'</option>';				}				else				{					pro_str += '<option value="'+pro_obj.region_id+'">'+pro_obj.region_name+'</option>';				}
+				
 			}
-			$id("select-choice-2").innerHTML = pro_str;
+			$id("select-choice-2").innerHTML = pro_str;			zy_slectmenu("select-choice-2");			getCitys(11,2,r_id);			  
 		}else if(opid == 11){
 			var res = (result.substr(result.indexOf("?(")+2,result.length)).substr(0,result.length-3);
 			var city_arr = JSON.parse(res);
 			uexXmlHttpMgr.close(opid);
 			var city_str = '<option value="-1">请选择</option>';
 			for(var i = 0; i < city_arr.length; i++){
-				var city_obj = city_arr[i];
-				city_str += '<option value="'+city_obj.region_id+'">'+city_obj.region_name+'</option>';
+				var city_obj = city_arr[i];				if(city_obj.region_name == "杭州") {					r_id = city_obj.region_id;					city_str += '<option value="'+city_obj.region_id+'" selected = "selected">'+city_obj.region_name+'</option>';				}				else				{					city_str += '<option value="'+city_obj.region_id+'">'+city_obj.region_name+'</option>';					}
+				
 			}
-			$id("select-choice-3").innerHTML = city_str;
+			$id("select-choice-3").innerHTML = city_str;			zy_slectmenu("select-choice-3");			getCitys(12,3,r_id);
 		}else if(opid == 12){
 			var res = (result.substr(result.indexOf("?(")+2,result.length)).substr(0,result.length-3);
 			var dis_arr = JSON.parse(res);
 			uexXmlHttpMgr.close(opid);
 			var dis_str = '<option value="-1">请选择</option>';
 			for(var i = 0; i < dis_arr.length; i++){;
-				var dis_obj = dis_arr[i];
-				dis_str += '<option value="'+dis_obj.region_id+'">'+dis_obj.region_name+'</option>';
+				var dis_obj = dis_arr[i];			if (dis_obj.region_name == "富阳市") {				r_id = dis_obj.region_id;				dis_str += '<option value="'+dis_obj.region_id+'" selected = "selected">'+dis_obj.region_name+'</option>';			}
+			else			{				dis_str += '<option value="'+dis_obj.region_id+'">'+dis_obj.region_name+'</option>';			}	
 			}
-			$id("select-choice-4").innerHTML = dis_str;
+			$id("select-choice-4").innerHTML = dis_str;			zy_slectmenu("select-choice-4");
 		}else{
 			var res = (result.substr(result.indexOf("?(")+2,result.length)).substr(0,result.length-3);
 			var coun_arr = JSON.parse(res);
@@ -316,7 +316,7 @@ function httpSuccess(opid,status,result){//status 状态 0 接收，1完成
 				var coun_obj = coun_arr[i];
 				cou_str += '<option value="'+coun_obj.region_id+'">'+coun_obj.region_name+'</option>';
 			}
-			$id("select-choice-1").innerHTML = cou_str;
+			$id("select-choice-1").innerHTML = cou_str;			$id("select-choice-1").selectedIndex = 1;			zy_slectmenu("select-choice-1");			getCitys(10,1,1); 
 		}
 	}
 	//uexXmlHttpMgr.close(opid);
@@ -338,7 +338,7 @@ zy_fix("header","","",function(){
 			uexFileMgr.closeFile('1');
 		}
 	}
-	uexFileMgr.isFileExistByPath("wgt://data/uesrInfo.txt");
+	uexFileMgr.isFileExistByPath("wgt://data/uesrInfo.txt");	
 	getCitys(15,0,0);
 	uexWidgetOne.cbError = function(opCode, errorCode, errorInfo){
 		uexWindow.alert("提示","errorCode:" + errorCode + "\nerrorInfo:" + errorInfo,"确定");

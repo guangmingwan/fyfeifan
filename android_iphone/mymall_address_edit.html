@@ -124,19 +124,19 @@
 					<label for="text-0" class="ui-input-text ui_input_text" >收货人姓名:</label>
 					<input placeholder="" name="text-0" id="textName"  type="text" value="" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-btn-d ui_input_text_left" />
 				</div>
-			</li>
+			</li><input placeholder="" name="text-0" id="textEmail"  type="hidden" value="" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-btn-d ui_input_text_left" /><!--
 			<li class=" ui-body-b ui-li-static ui-li ui_body_b_dwx ui_li_dwx_bj ui_li_ddwx">
 				<div class="ui-has-label">
 					<label for="text-0" class="ui-input-text ui_input_text" >电子邮件:</label>
 					<input placeholder="" name="text-0" id="textEmail"  type="text" value="" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-btn-d ui_input_text_left" />
 				</div>
-			</li> 
+			</li> -->
 			<li class=" ui-body-b ui-li-static ui-li ui_body_b_dwx ui_li_dwx_bj ui_li_ddwx">
 				<div class="ui-has-label">
 					<label for="text-0" class="ui-input-text ui_input_text" >详细地址:</label>
 					<input placeholder="" name="text-0" id="textAddress"  type="text" value="" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-btn-d ui_input_text_left" />
 				</div>
-			</li> 
+			</li> <input placeholder="" name="text-0" id="textZip"  type="hidden" value="" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-btn-d ui_input_text_left" /><!--
 			<li class=" ui-body-b ui-li-static ui-li ui_body_b_dwx ui_li_dwx_bj ui_li_ddwx">
 				<div class="ui-has-label">
 					<label for="text-0" class="ui-input-text ui_input_text" >邮编:</label>
@@ -148,7 +148,7 @@
 					<label for="text-0" class="ui-input-text ui_input_text" >电话:</label>
 					<input placeholder="" name="text-0" id="textTell"  type="text" value="" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-btn-d ui_input_text_left" />
 				</div>
-			</li> 
+			</li> --><input placeholder="" name="text-0" id="textTell"  type="hidden" value="" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-btn-d ui_input_text_left" />
 			<li class=" ui-body-b ui-li-static ui-li ui_body_b_dwx ui_li_dwx_bj ui_li_ddwx">
 				<div class="ui-has-label">
 					<label for="text-0" class="ui-input-text ui_input_text" >手机:</label>
@@ -475,8 +475,7 @@ function modity_address(){
 zy_fix("header","","",function(){
 	//获取参数
 	parseParam();
-	addid = params.addId;
-	
+	addid = params.addId; 
 	uexXmlHttpMgr.onData = httpSuccess;
 	uexWindow.cbConfirm = ConfirmSuccess;
 	var addressInfo_url = httpUrl+"user.php?jsoncallback=?&act=get_address_info&address_id="+addid;
