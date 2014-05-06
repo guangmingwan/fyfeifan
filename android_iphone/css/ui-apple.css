@@ -196,4 +196,4 @@ background-size: 2.6em 2.6em;
 	padding: .65em 0.13em .65em 0.0em
 }
 
-.ui_user_image {	background: url("res-apple/info.png") no-repeat !important;	width:72px;	height:72px;	border: 1px solid #779;	webkit-box-shadow: 0 1px 2px rgba(139, 139, 139, 0.73);	box-shadow: 0 1px 2px rgba(139, 139, 139, 0.73);	float:left;}.ui_user_info {	width:204px;	height:64px;	 	float:right;}.acountyue {	height:40px;	width:200px;	border: 1px solid #779;	text-align:center; 	border: 1px solid #8c8f91;	background: #fff;	 	padding:.4em 0;}
+.ui_user_image {	background: url("res-apple/info.png") no-repeat !important;	width:72px;	height:72px;	border: 1px solid #779;	webkit-box-shadow: 0 1px 2px rgba(139, 139, 139, 0.73);	box-shadow: 0 1px 2px rgba(139, 139, 139, 0.73);	float:left;}.ui_user_info {	min-width: 204px;	height: 94px;	float: right;	width: auto;}.acountyue {	height:60px;	width:auto;	border: 1px solid #779;	text-align:center; 	border: 1px solid #8c8f91;	background: #fff;	 	padding:.4em 0;}
