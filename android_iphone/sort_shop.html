@@ -64,7 +64,7 @@
         	<div id="">
 	            <ul data-role="listview" id="sort_shop_list_ul" class="ui-listview  ui-corner-none  ui-shadow a1">
 	                <!--<li class=" ui-body-d   ui-li-has-thumb    ui-li-static  ui-li sort-li ui-li-font-color"> -->
-	                <!--<span  class="ui-li-thumb ui-li-thumb3" style="background-image:url('css/res-apple/shop-pic.png');" ><img class="ui-li-thumb1" src="css/res-apple/pic.png" align="absmiddle" /></span>    <h3 class="ui-li-heading">motoE66</h3>    <p class="ui-li-desc">2.4英才1600万色分辨率(240*320)</p> <p class="ui-li-desc">市场价格：2757</p> <p class="ui-li-desc">本店价格：2525</p>       </li> -->
+	                <!--<span  class="ui-li-thumb ui-li-thumb3" style="background-image:url('css/res-apple/shop-pic.png');" ><img class="ui-li-thumb1" src="css/res-apple/pic.png" align="absmiddle" /></span>    <h3 class="ui-li-heading">motoE66</h3>    <p class="ui-li-desc">2.4英才1600万色分辨率(240*320)</p> <p class="ui-li-desc">零售价：2757</p> <p class="ui-li-desc">批发价：2525</p>       </li> -->
 	            </ul>
 				<p onclick="addMore()" class='more_p' id="more_" style="display:none;height: 3em;"><a href='javascript:(0)'>更多</a></p>
 	            <div class="div-center" id="shop_div" style="display:none;">
@@ -124,9 +124,9 @@
                             '</h3>' +
                             '<p class="ui-li-desc w_fontsize">' +
                             s.goods_list[i].goods_brief +
-                            '</p><p class="ui-li-desc w_fontsize">市场价格：' +
+                            '</p><p class="ui-li-desc w_fontsize">零售价：' +
                             s.goods_list[i].market_price +
-                            '</p><p class="ui-li-desc w_fontsize w_color">本店价格：' +
+                            '</p><p class="ui-li-desc w_fontsize w_color">批发价：' +
                             s.goods_list[i].shop_price +
                             '</p></li>';
                         }
@@ -178,9 +178,9 @@
                             s.goods_list[i].goods_name +
                             '</h3>' +
                             '<p class="ui-li-desc w_fontsize">' +
-                            '</p><p class="ui-li-desc w_fontsize">市场价格：' +
+                            '</p><p class="ui-li-desc w_fontsize">零售价：' +
                             s.goods_list[i].market_price +
-                            '</p><p id="price_'+i+'" class="ui-li-desc w_fontsize w_color">本店价格：' +
+                            '</p><p id="price_'+i+'" class="ui-li-desc w_fontsize w_color">批发价：' +
                             s.goods_list[i].shop_price +
                             '</p></li>';
                         }

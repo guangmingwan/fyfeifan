@@ -58,8 +58,8 @@
 			</li>
 			<li class=" ui-body-d     ui-corner-bottom  ui-li-static  ui-li">
 				<div class="ui-has-label ui_has_label_dwx">
-					<label for="text-0" class="ui-input-text ui-label-staticwidth" style="max-width: 6em;width:6em;" >邮　　箱：</label>
-					<input placeholder="请输入邮箱" name="text-0" id="email"  type="text" value="" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-btn-d ui-sy-input"/>
+					<label for="text-0" class="ui-input-text ui-label-staticwidth" style="max-width: 6em;width:6em;" >手　　机：</label>
+					<input placeholder="请输入手机号码" name="text-0" id="mobile"  type="text" value="" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-btn-d ui-sy-input"/>
 				</div>
 			</li>
 		</ul>
@@ -81,7 +81,7 @@
 		var user_name = $id("userName").value;
 		var password = $id("password").value;
 		var pwd = $id("passwordOK").value;
-		var email = $id("email").value;
+		var mobile = $id("mobile").value;
 		
 		if(user_name == "" || user_name.length == 0){
 			uexWindow.toast("0","5","用户名不能为空","2000");
@@ -98,17 +98,17 @@
 			uexWindow.toast("0","5","两次输入的密码不一致","2000");
 			return;
 		}
-		if(email == "" || email.length == 0){
-			uexWindow.toast("0","5","电子邮箱不能为空","2000");
+		if(mobile == "" || mobile.length == 0){
+			uexWindow.toast("0","5","手机不能为空","2000");
 			return;
-		}else{
+		}else{			/*
 			if (!/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/.test(email)) {
 				uexWindow.toast("0","5","电子邮箱格式不正确","2000");
 				return;
-			}
+			}*/
 		}
 		
-		var url = image_url + 'plugins/zywx/rpc/user.php?jsoncallback=?&act=act_register&username='+user_name+'&pwd='+password+'&email='+email+'&agreement=1';
+		var url = image_url + 'plugins/zywx/rpc/user.php?jsoncallback=?&act=act_register&username='+user_name+'&pwd='+password+'&extend_field5='+mobile+'&agreement=1';
 		uexWindow.toast("1","5","请稍后...","0");
 		uexXmlHttpMgr.open('1', "GET", url, ""); 
 		uexXmlHttpMgr.send('1');

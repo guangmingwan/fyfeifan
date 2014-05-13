@@ -136,8 +136,8 @@
 						'<span  class="ui-li-thumb ui-li-thumb3" style="background-image:url(\'' + image_url + o.goods[i].goods_thumb + '\');" ></span>'+
 						'<h3 class="ui-li-heading">' + o.goods[i].goods_name + '</h3>'+
 						'<p class="ui-li-desc w_fontsize">' + o.goods[i].goods_brief + '</p>'+
-						'<p class="ui-li-desc w_fontsize">市场价格：' + o.goods[i].market_price + '</p>'+
-						'<p class="ui-li-desc w_fontsize">本店价格：<span class="w_color">' + o.goods[i].shop_price + '</span></p></li>';
+						'<p class="ui-li-desc w_fontsize">零售价：' + o.goods[i].market_price + '</p>'+
+						'<p class="ui-li-desc w_fontsize">批发价：<span class="w_color">' + o.goods[i].shop_price + '</span></p></li>';
                     }
 		    		$id("num").innerHTML = num;
 		    		$id("goods_li").innerHTML = goods_list;
@@ -194,7 +194,7 @@
 		    		var num = 0;
 		    		for(var i in o.goods){
 		    			num++;
-		    			goods_list += '<li onclick="openage('+o.goods[i].goods_id+',\''+o.goods[i].goods_name+'\')" class=" ui-body-d   ui-li-has-thumb    ui-li-static  ui-li sort-li ui-li-font-color"><span  class="ui-li-thumb ui-li-thumb3" style="background-image:url(\''+image_url+o.goods[i].goods_thumb+'\');" ></span>    <h3 class="ui-li-heading">'+o.goods[i].goods_name+'</h3>    <p class="ui-li-desc w_fontsize">'+o.goods[i].goods_brief+'</p> <p class="ui-li-desc w_fontsize">市场价格：'+o.goods[i].market_price+'</p> <p class="ui-li-desc w_fontsize">本店价格：<span class="w_color">'+o.goods[i].shop_price+'</span></p>       </li>';
+		    			goods_list += '<li onclick="openage('+o.goods[i].goods_id+',\''+o.goods[i].goods_name+'\')" class=" ui-body-d   ui-li-has-thumb    ui-li-static  ui-li sort-li ui-li-font-color"><span  class="ui-li-thumb ui-li-thumb3" style="background-image:url(\''+image_url+o.goods[i].goods_thumb+'\');" ></span>    <h3 class="ui-li-heading">'+o.goods[i].goods_name+'</h3>    <p class="ui-li-desc w_fontsize">'+o.goods[i].goods_brief+'</p> <p class="ui-li-desc w_fontsize">零售价：'+o.goods[i].market_price+'</p> <p class="ui-li-desc w_fontsize">批发价：<span class="w_color">'+o.goods[i].shop_price+'</span></p>       </li>';
 		    			}
 		    		$id("num").innerHTML = num;
 		    		$id("goods_li").innerHTML = goods_list;

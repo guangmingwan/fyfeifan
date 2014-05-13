@@ -161,7 +161,7 @@
                                     </li>
                                     <li class="w_border_bottom w_border_top">
                                     <p style="vertical-align: middle">
-                                            市场价格：<span id="shichang_price"></span>
+                                            零售价：<span id="shichang_price"></span>
                                         </p>
                                         <p>
                 <span id="cx_">促销价格：</span><span id="members_price"></span>
@@ -470,9 +470,9 @@
 								$id("click_num").innerHTML = s.click_count;
 								$id("goods_details").innerHTML = s.goods_desc;
 								desc = s.goods_desc;//描述
-								markePrice = s.market_price;//市场价格
+								markePrice = s.market_price;//零售价
 								/*if (s.is_promote == false) {
-									price = s.shop_price_formated;//本店价格
+									price = s.shop_price_formated;//批发价
 								}else{
 									price = s.promote_price_formated;//促销价格
 								}*/
@@ -480,8 +480,8 @@
 									price = s.promote_price;//促销价格
 									$id("cx_").innerHTML = "促销价格：";
 								}else{
-									price = s.shop_price_formated;//本店价格
-									$id("cx_").innerHTML = "本店价格：";
+									price = s.shop_price_formated;//批发价
+									$id("cx_").innerHTML = "批发价：";
 								}
 								imgurl = fix_thumburl( s.goods_thumb );	//图片
 								if (s.rank_prices == "") {
@@ -492,7 +492,7 @@
 									for (var i in s.rank_prices) {
 										if (s.rank_prices[i].rank_name == "注册用户") {
 											$id("members_price").innerHTML = s.rank_prices[i].price;
-											price = s.rank_prices[i].price;//本店价格
+											price = s.rank_prices[i].price;//批发价
 										}
 										else 
 											if (s.rank_prices[i].rank_name == "vip") {
