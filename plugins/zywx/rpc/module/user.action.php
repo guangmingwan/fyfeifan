@@ -25,6 +25,11 @@ class UserAction {
 			$user =& init_users();
 			if ($user->check_user($user_name, $pwd) > 0) 
 			{
+				if ($user->login($user_name, $pwd,1))
+				{
+					update_user_info();
+					recalculate_price();
+				}
 				$user->set_session($user_name);
 				$msg = rpcLang('user.php', 'login_success');
 				$user_id = intval($_SESSION['user_id']);
